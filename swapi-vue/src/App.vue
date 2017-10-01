@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <app-people></app-people>
+    <app-result v-bind:title="people"></app-result>
   </div>
 </template>
 
 <script>
-import People from './components/People.vue'
+import Result from './components/Result.vue'
 
 export default {
   components:{
-    'app-people': People
+    'app-result': Result
   },
   name: 'app',
   data () {
     return {
-      
+      people: 'Planets'
     }
   }
 }

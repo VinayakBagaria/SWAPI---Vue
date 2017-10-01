@@ -1,8 +1,8 @@
 <template>
-  <div id="show-people">
-    <h1>Star Wars People Search</h1>
-    <input type="text" v-model="search" placeholder="Search person">
-    <div class="person" v-for="single in people">
+  <div id="show-result">
+    <h1>Star Wars {{ title }} Search</h1>
+    <input type="text" v-model="search" placeholder="Search">
+    <div class="object" v-for="single in result">
       <h2 v-rainbow>{{ single._source.name }}</h2>
     </div>
   </div>
@@ -10,12 +10,17 @@
 
 <script>
   import axios from 'axios';
-  import searchMixin from "../mixins/searchMixin.js";
+
   export default{
+    props:{
+      title:{
+        type: String
+      }
+    },
     data(){
       return{
-        people: [],
-        search: ''
+        result: [],
+        search: '',
       }
     },
     methods:{
@@ -23,7 +28,7 @@
     },
     watch:{
       search(val, oldVal){
-        axios.post('http://localhost:9200/swapi/people/_search',
+        axios.post('http://localhost:9200/swapi/'+this.title.toLowerCase()+'/_search',
         {
         	"query":{
         		"match_phrase_prefix":{
@@ -33,7 +38,7 @@
         }).then((response) => {
           return response.data;
         }).then((data) => {
-          this.people = data.hits.hits;
+          this.result = data.hits.hits;
         });
       }
     },
@@ -43,28 +48,27 @@
           el.style.color = '#' + Math.random().toString().slice(2,8);
         }
       }
-    },
-    mixins:[searchMixin]
+    }
   }
 </script>
 
 <style scoped>
-  #show-people{
+  #show-result{
     max-width: 800px;
     margin: 0 auto;
     margin-bottom: 40px;
   }
-  .person{
+  .object{
     padding: 5px 20px 5px 20px;
     margin: 20px 0;
     box-sizing: border-box;
     background: #eee;
   }
-  #show-people a{
+  #show-result a{
     color: #444;
     text-decoration: none;
   }
-  .person h4{
+  .object h4{
     cursor: pointer;
     display: inline;
     float: right;
