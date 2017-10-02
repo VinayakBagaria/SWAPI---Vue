@@ -45,6 +45,12 @@ Do this step for all the json files, one by one.
 Voila...!! Type in a name in the search box and your result is the filtered names. </li>
 </ol>
 
+### Future Improvements
+
+UI for sure<br>
+More detailed content and referencing<br>
+Navigation
+
 ### Credits
 
 [SWAPI](https://github.com/phalt/swapi) Django REST files hosted on https://www.swapi.co
