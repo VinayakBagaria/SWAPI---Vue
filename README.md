@@ -13,7 +13,7 @@ Ultimate Star Wars Search using ElasticSearch and Vue JS
 
 ### Setup
 <ol>
-<li> Allow http access through Vue code by adding the following configs to `<path_to_elasticsearch>/config/elasticsearch.yml` file
+<li> Allow http access through Vue code by adding the following configs to /config/elasticsearch.yml file in ES directory.
 
      http.cors.enabled : true
      http.cors.allow-origin: "*"
