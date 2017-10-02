@@ -58,10 +58,10 @@
   }
 </script>
 
-<style scoped>
+<style>
   #show-result{
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0px auto;
     margin-bottom: 40px;
   }
   .object{
