@@ -1,9 +1,9 @@
 <template>
   <div id="show-result">
-    <h1>Star Wars {{ title }} Search</h1>
+    <h1>Star Wars {{ value }} Search</h1>
     <input type="text" v-model="search" placeholder="Search">
     <div class="object" v-for="single in result">
-      <h2 v-rainbow>{{ single._source.name }}</h2>
+      <h2 v-rainbow>{{ single._source[keyData] }}</h2>
     </div>
   </div>
 </template>
@@ -13,7 +13,10 @@
 
   export default{
     props:{
-      title:{
+      keyData:{
+        type: String
+      },
+      value:{
         type: String
       }
     },
@@ -28,14 +31,17 @@
     },
     watch:{
       search(val, oldVal){
-        axios.post('http://localhost:9200/swapi/'+this.title.toLowerCase()+'/_search',
+        let search = this.keyData;
+        let url = 'http://localhost:9200/swapi/'+this.value.toLowerCase()+'/_search'
+        axios.post(url,
         {
         	"query":{
         		"match_phrase_prefix":{
-        			"name": val
+        			   [search] : val
         		}
         	}
         }).then((response) => {
+          console.log(response)
           return response.data;
         }).then((data) => {
           this.result = data.hits.hits;
@@ -67,10 +73,5 @@
   #show-result a{
     color: #444;
     text-decoration: none;
-  }
-  .object h4{
-    cursor: pointer;
-    display: inline;
-    float: right;
   }
 </style>
