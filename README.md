@@ -27,7 +27,7 @@ Installing requirements for python
 
      pip install -r requirements.txt
 
-Change directory into `src/` and run
+Change directory into `python-json/` and run
 
       python automate.py
 
@@ -35,7 +35,7 @@ After a few seconds, you should see `done indexing`. Go to [People Search](http:
 
 ### Vue Config
 
-Now go to `swapi-vue/` and run
+Now install packages defined in package.json by running
 
       npm install
 
@@ -43,12 +43,6 @@ Now run
 
       npm run dev
 Voila...!! Type in a name in the search box and your result is the filtered names.
-
-### Future Improvements
-
-UI for sure<br>
-More detailed content and referencing<br>
-Navigation
 
 ### Credits
 
