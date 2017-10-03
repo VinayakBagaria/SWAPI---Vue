@@ -1,7 +1,7 @@
 ![Image](/swapi.png)
 <h1 align="center">SWAPI</h1>
 
-Ultimate Star Wars Search using ElasticSearch and Vue JS
+<p align="center">Ultimate Star Wars Search using ElasticSearch and Vue JS</p>
 
 ### Requirements
 
@@ -11,9 +11,8 @@ Ultimate Star Wars Search using ElasticSearch and Vue JS
   <li>Vue JS</li>
 </ul>
 
-### Setup
-<ol>
-<li> Allow http access through Vue code by adding the following configs to /config/elasticsearch.yml file in ES directory.
+### ES Config
+Allow http access through Vue code by adding the following configs to /config/elasticsearch.yml file in ES directory.
 
      http.cors.enabled : true
      http.cors.allow-origin: "*"
@@ -21,29 +20,29 @@ Ultimate Star Wars Search using ElasticSearch and Vue JS
      http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length
      http.cors.allow-credentials: true
 
-Now run elasticsearch. It should be up on port 9200. </li>
-<li> Installing requirements for python
+Now run elasticsearch. It should be up on port 9200.
+
+### Python Config
+Installing requirements for python
 
      pip install -r requirements.txt
-</li>
-<li>  Change directory into source and run
+
+Change directory into `src/` and run
 
       python automate.py
 
-A open file dialog selector should open. Select your json file. "done indexing" should be the output in the console.
-Do this step for all the json files, one by one.
+After a few seconds, you should see `done indexing`. Go to [People Search](http://localhost:9200/swapi/people/_search) . All the json files inside [src directory](https://github.com/VinayakBagaria/SWAPI/tree/master/src) get indexed into ES.
 
-      Beware: Don't re-select a file already indexed (double data).
-</li>
-<li> Now go to swapi-vue directory and run
+### Vue Config
+
+Now go to `swapi-vue/` and run
 
       npm install
-</li>
-<li>  Now run
+
+Now run
 
       npm run dev
-Voila...!! Type in a name in the search box and your result is the filtered names. </li>
-</ol>
+Voila...!! Type in a name in the search box and your result is the filtered names.
 
 ### Future Improvements
 
@@ -53,4 +52,5 @@ Navigation
 
 ### Credits
 
-[SWAPI](https://github.com/phalt/swapi) Django REST files hosted on https://www.swapi.co
+Hosted [API](https://www.swapi.co)<br>
+Django REST [Source Code](https://github.com/phalt/swapi) for the API
