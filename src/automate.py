@@ -1,7 +1,7 @@
-import json
 from elasticsearch import Elasticsearch
-import requests
+import json
 import os
+import requests
 
 es = Elasticsearch([
     {
@@ -10,23 +10,20 @@ es = Elasticsearch([
     }
 ])
 
-from tkinter.filedialog import askopenfilename
-filename = askopenfilename()
+listOfFiles = [f for f in os.listdir() if os.path.isfile(f) if '.json' in f]
 
 data = dict()
 
-base = os.path.basename(filename)
-doc_type = os.path.splitext(base)[0]
+for file in listOfFiles:
+    doc_name = file.split('.json')[0]
 
-print(doc_type)
+    with open(file) as json_data:
+        d = json.load(json_data)
 
-with open(filename) as json_data:
-    d = json.load(json_data)
+        for x in range(len(d)):
+            data = d[x]['fields']
+            data['pk'] = d[x]['pk']
 
-    for x in range(len(d)):
-        data = d[x]['fields']
-        data['pk'] = d[x]['pk']
-
-        es.index(index='swapi', doc_type=doc_type, body=data)
+            es.index(index='swapi', doc_type=doc_name, body=data)
 
 print('done indexing')
