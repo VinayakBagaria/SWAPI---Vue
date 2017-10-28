@@ -14,22 +14,14 @@
 ### ES Config
 Allow http access through Vue code by adding the following configs to /config/elasticsearch.yml file in ES directory.
 
-     http.cors.enabled : true
-     http.cors.allow-origin: "*"
-     http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
-     http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length
-     http.cors.allow-credentials: true
+<img src="esConfig.png" width="80%" alt="ES Config" />
 
 Now run elasticsearch. It should be up on port 9200.
 
 ### Python Config
 Installing requirements for python
 
-     pip install -r requirements.txt
-
-Change directory into `python-json/` and run
-
-      python automate.py
+<img src="pyConfig.png" width="80%" alt="Python Config" />
 
 After a few seconds, you should see `done indexing`. Go to [People Search](http://localhost:9200/swapi/people/_search) . All the json files inside [src directory](https://github.com/VinayakBagaria/SWAPI/tree/master/src) get indexed into ES.
 
